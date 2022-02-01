@@ -1,0 +1,95 @@
+button.btn {
+  margin-left: 6px;
+  background-color: rgb(21, 182, 16);
+  font-size: 20px;
+}
+
+div.textBox {
+  width: 250px;
+  height: 50px;
+
+  padding: 10px;
+  margin: auto;
+  background-color: rgba(0, 83, 192, 0.452);
+  border-radius: 10px;
+  margin-top: 20%;
+}
+h2.rubrik {
+  font-size: 45px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  margin: auto;
+}
+
+div.cardInsert {
+  width: 160px;
+  height: 25px;
+  padding: 1px;
+  margin: auto;
+  margin-top: 20px;
+  animation: 1000ms ease-in-out infinite color-change;
+  border-radius: 10px;
+}
+div.card {
+  width: 120px;
+  height: 8px;
+  margin: auto;
+  margin-top: 8px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+div.cont {
+  width: 70px;
+
+  padding: 10px;
+  margin: auto;
+  margin-top: 140px;
+  background-color: rgba(0, 83, 192, 0.452);
+  border-radius: 10px;
+}
+
+div.container {
+  width: 450px;
+  height: 550px;
+  padding: 10px;
+  background-color: rgba(0, 83, 192, 0.452);
+  margin: auto;
+  margin-top: 250px;
+  border-radius: 5px;
+}
+body {
+  background-color: rgba(114, 114, 114, 0.294);
+}
+
+div.insertBox {
+  width: 220px;
+  height: 40px;
+  margin: auto;
+  background-color: rgba(0, 83, 192, 0.452);
+  border-radius: px;
+  margin-top: 90px;
+  border-radius: 10px;
+}
+button.insertBtn {
+  background-color: rgba(149, 145, 145, 0.678);
+  width: 200px;
+  margin: auto;
+  margin-left: 8px;
+  margin-top: 6px;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+@keyframes color-change {
+  0% {
+    background-color: rgb(15, 128, 0);
+  }
+
+  50% {
+    background-color: rgb(12, 102, 0);
+  }
+  100% {
+    background-color: rgb(15, 128, 0);
+  }
+}

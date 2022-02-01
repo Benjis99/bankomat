@@ -1,5 +1,5 @@
 let account = {
-  accountName: "Benjamin",
+  accountName: "Benjamin E",
   accountBalance: 100,
 
   getBalance: function () {
@@ -9,13 +9,15 @@ let account = {
   deposit: function () {
     input = parseFloat(prompt("How much do you want to deposit?"));
     console.log(input);
-
-    if (input < 1) {
-      alert("You can't deposit under 1kr");
-    }
-    if (input >= 1) {
+    if (isNaN(input)) {
+      checkForNanDeposit = true;
+      this.accountError();
+    } else if (input < 1) {
+      checkDepositAmount = true;
+      account.accountError();
+    } else if (input >= 1) {
       this.accountBalance = this.accountBalance + input;
-      alert("Successfully deposit");
+      alert("Successfully deposit: " + input + " KR");
       atm();
     }
   },
@@ -23,24 +25,54 @@ let account = {
   withdrawal: function () {
     withdrawAmonut = parseFloat(prompt("How much do you want to withdraw?"));
     //Ha en variabel som tar "variabel - accountBalance"
-
-    if (withdrawAmonut < 1) {
+    console.log(withdrawAmonut);
+    if (withdrawAmonut > this.accountBalance) {
+      console.log(checkWithdrawAmount);
+      checkWithdrawAmount = true;
+      console.log(checkWithdrawAmount);
+      account.accountError();
+    } else if (isNaN(withdrawAmonut)) {
+      checkForNanWithdraw = true;
+      this.accountError();
+    } else if (withdrawAmonut < 1) {
       alert("You can't withdraw under 1kr");
-    }
-    if (withdrawAmonut >= 1) {
+      withdrawAmonut = null;
+    } else if (withdrawAmonut >= 1) {
       this.accountBalance = this.accountBalance - withdrawAmonut;
       alert("Successfully withdraw: " + withdrawAmonut + " KR");
-      atm();
+      withdrawAmonut = null;
     }
-    console.log("test");
+
+    console.log("sista raden i withdrawal");
   },
 
   getAccountName: function () {
-    alert(this.accountName);
+    alert(`Account name: ${this.accountName}`);
   },
 
   accountError: function () {
-    alert("error");
+    while (checkWithdrawAmount) {
+      alert("Can't take out more then you have");
+      checkWithdrawAmount = false;
+      console.log(checkWithdrawAmount);
+      account.withdrawal();
+    }
+
+    while (checkDepositAmount) {
+      alert("You can't deposit under 1kr");
+      checkDepositAmount = false;
+      account.deposit();
+    }
+    while (checkForNanWithdraw || checkForNanDeposit) {
+      alert("Not a Number, try again!");
+      if (checkForNanWithdraw) {
+        checkForNanWithdraw = false;
+        this.withdrawal();
+      } else if (checkForNanDeposit) {
+        checkForNanDeposit = false;
+        this.deposit();
+      }
+    }
   },
 
   exitAccount: function () {
@@ -48,11 +80,21 @@ let account = {
   },
 };
 
+let checkForNanDeposit = false;
+let checkForNanWithdraw = false;
 let withdrawAmonut;
 let choice;
 let input;
+let checkWithdrawAmount = false;
+let checkDepositAmount = false;
+let insertCard = false;
+
 //Kolla upp isNan
 function atm() {
+  if (!insertCard) {
+    alert("You need to insert your card first!");
+    return;
+  }
   choice = prompt(
     "Select a choice 1.) See balance 2.) Make a deposit 3.) Make a withdraw 4.) Get accountname 5.) Exit"
   );
@@ -64,21 +106,24 @@ function atm() {
   if (choice == 1) {
     account.getBalance();
     console.log(account.accountBalance);
-  }
-  if (choice == 2) {
+    atm();
+  } else if (choice == 2) {
     account.deposit();
-  }
-  if (choice == 3) {
+  } else if (choice == 3) {
     account.withdrawal();
-  }
-  if (choice == 4) {
+    atm();
+  } else if (choice == 4) {
     account.getAccountName();
-  }
-  if (choice == 5) {
+    atm();
+  } else if (choice == 5) {
     account.exitAccount;
-  }
-  if (choice > 5) {
-    account.alert("Try again");
+  } else {
+    alert("Try again");
     atm();
   }
+}
+
+function checkInsert() {
+  alert("Card have been inserted, press start to make your decision");
+  insertCard = true;
 }
