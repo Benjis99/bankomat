@@ -6,6 +6,7 @@ let account = {
     alert("Your balance is: " + this.accountBalance + "KR");
   },
 
+  //Jag valde att köra på if-else statement då det känns enklare för min del.
   deposit: function () {
     input = parseFloat(prompt("How much do you want to deposit?"));
     //Jag använder mig utav parseFloat eftersom att man ska kunna
@@ -54,6 +55,8 @@ let account = {
   },
 
   accountError: function () {
+    //Jag valde att köra olika while loops för att printa ut vad som var felet.
+    //Enligt uppgiften skulle accountError ha ett passande felmeddelande.
     while (checkWithdrawAmount) {
       alert("Can't take out more then you have");
       checkWithdrawAmount = false;
