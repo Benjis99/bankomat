@@ -8,6 +8,8 @@ let account = {
 
   deposit: function () {
     input = parseFloat(prompt("How much do you want to deposit?"));
+    //Jag använder mig utav parseFloat eftersom att man ska kunna
+    //ta ut och sätta in decimaler. Använder man inte parseFloat så kan man ej använda sig utav decimalerna.
     console.log(input);
     if (isNaN(input)) {
       checkForNanDeposit = true;
@@ -24,7 +26,8 @@ let account = {
 
   withdrawal: function () {
     withdrawAmonut = parseFloat(prompt("How much do you want to withdraw?"));
-    //Ha en variabel som tar "variabel - accountBalance"
+    //Jag använder mig utav parseFloat eftersom att man ska kunna
+    //ta ut och sätta in decimaler. Använder man inte parseFloat så kan man ej använda sig utav decimalerna.
     console.log(withdrawAmonut);
     if (withdrawAmonut > this.accountBalance) {
       console.log(checkWithdrawAmount);
@@ -89,7 +92,6 @@ let checkWithdrawAmount = false;
 let checkDepositAmount = false;
 let insertCard = false;
 
-//Kolla upp isNan
 function atm() {
   if (!insertCard) {
     alert("You need to insert your card first!");
